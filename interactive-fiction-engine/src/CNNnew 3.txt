@@ -1,0 +1,90 @@
+
+# Courbe d'apprentissage 
+
+historique = model.fit(x_train, y_train, validation_split = 0.2, batch_size=40, epochs=2, verbose=1)
+
+print(historique.history.keys())
+# summarize history for accuracy
+plt.plot(historique.history['accuracy'])
+plt.plot(historique.history['val_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+
+"""
+Utiliser EarlyStopping et ModelCheckpoint 
+de keras.callbacks pendant model.fit
+Possibilité d’arrêter l’apprentissage quand le modèle se stabilise
+Sauvegarder le meilleur modèle pour l’utiliser ensuite
+Vérifier avec model.evaluate
+"""
+# drive mount content/drive
+# donne un lien
+# on le copie colle avec le !unzip
+
+EPOCHS = 2
+ 
+checkpoint_filepath = '/tmp/checkpoint'
+model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+    filepath=checkpoint_filepath,
+    save_weights_only=True,
+    monitor='val_accuracy',
+    mode='max',
+    save_best_only=True)
+histoire = model.fit(x_test, y_test, validation_split = 0.2, batch_size=40, epochs=EPOCHS, callbacks=model_checkpoint_callback, verbose=0)
+
+resultat = model.load_weights(checkpoint_filepath)
+
+"""
+mc = tf.keras.callbacks.ModelCheckpoint('best_model.h5', monitor='val_loss', mode='min', save_best_only=True)
+best_model = tf.keras.models.load_model('best_model.h5')
+test_loss, test_acc = best_model.evaluate(x_test, y_test)
+model.save('/content/drive/My Drive/CNN/nasalite')
+"""
+
+"""
+Afficher la matrice de confusion avec ConfusionMatrix
+Il faut réutiliser la fonction argmax pour obtenir les réponses, 
+et ConfusionMatrix a besoin de numpy array
+"""
+# maxima = np.argmax(y_test, axis = 1)
+# reponses = maxima.reshape(10000, 1)
+
+# maxima_data = np.argmax(best_result, axis=1)
+# result = maxima_data.reshape(10000, 1)
+
+df_x = ps.DataFrame(predictions)
+df_y = ps.DataFrame(y_test)
+
+df = ps.DataFrame(df_x, columns=['y_Actual','y_Predicted'])
+# print (df)
+confusion_matrix = ps.crosstab(df['y_Actual'], df['y_Predicted'], rownames=['Actual'], colnames=['Predicted'])
+print (confusion_matrix)
+
+
+dico_nasal = {'nasal':0, 'non_nasal':1}
+
+# drive.mount('/content/drive')
+
+# !unzip "/content/drive/My Drive/test.zip" -d "/content/drive/My Drive/CNN"
+import cv2
+
+list_paths = glb.glob("/content/drive/My Drive/CNN/train/*/*")
+print(list_paths)
+
+x_train = []
+y_train = []
+
+for list_paths in glb.glob("/content/drive/My Drive/CNN/train/*/*")
+  # boucle qui lit image et ensuite, réparti dans le dico
+  x = cv2.imread(list_paths, 0).astype(np.uint8)
+  x = cv2.resize(x, (28,28))
+  nasal = list_paths_split('/')[-2]
+  y = dico_nasal[nasal]
+  print(y)
+  y_train.append(y)
+  x_train.append(x)
+  # faire aussi ça pour le test et afficher toutes les données
+  # Il faudra passer en array (avec np) et reshape pour le bon format (60000, 28, 28, 1)

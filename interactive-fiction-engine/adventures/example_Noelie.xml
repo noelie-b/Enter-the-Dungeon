@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- BOTTERO Noélie (INALCO) 22001455 -->
+
+<!DOCTYPE world SYSTEM "example.dtd">
+
+<!-- remettre les numéros de scènes à jour-->
+<!-- Faire une scène en plus au début -->
+<!-- Comment modifier une scène existante quand on y passe une deuxième fois ? -->
+
+<world>
+    <player scene="scene00"/>
+    <scenes>
+        <scene id="scene00" numDoors="2" numBoxes="1" msj="After being chased by an orc, you are exhausted and, while fleeing, you see an abandoned building in the distance. Luckily, the door is open, you enter and lock yourself in. There is a staircase going north. There is a bookshelf on the west wall and a door to the east.">
+            <action dest="door00" msj="Go north"/>
+            <action dest="door01" msj="Go east"/>
+            <action dest="box00" msj="Look at the books on the shelf"/>
+        </scene>
+    
+    <scene id="scene01" numDoors="1" numBoxes="4" msj="You are in a dark room with four chests and one door to the west.">
+        <action dest="box10" msj="Open the first chest"/>
+        <action dest="box08" msj="Open the second chest"/>
+        <action dest="box09" msj="Open the third chest"/>
+        <action dest="box01" msj="Open the fourth chest"/>
+        <action dest="door01" msj="Go west"/>
+    </scene>
+        
+    <scene id="scene02" numDoors="3" numBoxes="1" msj="In this room is a painting of a goblin. There are also two doors (one to the west and one to the east) and a staircase to the south.">
+        <action dest="door00" msj="Go south"/>
+        <action dest="door02" msj="Go east"/>
+        <action dest="door03" msj="Go west"/>
+        <action dest="box02" msj="Take a look at the painting"/>
+    </scene>
+        
+        
+    <scene id="scene03" numDoors="2" numBoxes="1" msj="The room you enter is round shaped, and in the center is a pressure plate. There are two doors, one to the west, and one to the north.">
+        <action dest="door02" msj="Go west"/>
+        <action dest="door04" msj="Go north"/>
+        <action dest="box03" msj="Step on the pressure plate"/>
+    </scene>
+        
+        
+     <scene id="scene04" numDoors="2" numBoxes="0" msj="In this room, there is only one door to the south, and a staircase to the east. You hear a slight buzzing sound coming from the stairs.">
+         <action dest="door05" msj="Go east"/>
+         <action dest="door04" msj="Go south"/>
+     </scene>
+        
+       <scene id="scene05" numDoors="2" numBoxes="1" msj="You enter a strange room bathed in green light from a round shaped portal in front of you. Aside the glowing portal, there is one chest and a staircase going west.">
+           <action dest="door05" msj="Go west"/>
+           <action dest="door06" msj="Take the portal"/>
+           <action dest="box05" msj="Examine the room"/>
+       </scene>
+        
+       <scene id="scene06" numDoors="3" numBoxes="1" msj="In this room, there is one chest and three doors (one to the east, one to the north and one to the south).">
+           <action dest="door03" msj="Go east"/>
+           <action dest="door07" msj="Go south"/>
+           <action dest="door08" msj="Go north"/>
+           <action dest="box07" msj="Open the chest"/>
+       </scene>
+        
+        <scene id="scene07" numDoors="1" numBoxes="1" msj="You are now a room that seems to be a library. There is a lot of books on the shelves, and only one door to the north.">
+            <action dest="door07" msj="Go north"/>
+            <action dest="box06" msj="Take a look at the shelves"/>
+        </scene>
+        
+        <scene id="scene08" numDoors="2" numBoxes="0" msj="You are in a room with a rare atmosphere. There is one door to the south, and another one to the north that looks more sophisticated than the previous ones.">
+            <action dest="door09" msj="Go north"/>
+            <action dest="door08" msj="Go south"/>
+        </scene>
+        
+        <scene id="final" numDoors="0" numBoxes="0" msj="End of the game, you have won. Congratulations!!"/>
+    </scenes>
+    
+    <props>
+        <prop id="door00" type="door" state="true" scene01="scene00" scene02="scene02">
+            <action condition="open" msj="The stairs look quite unstable, but you take them carefully"/>
+        </prop>
+        
+        <prop id="door01" type="door" state="false" scene01="scene00" scene02="scene01">
+            <action condition="open" msj="The door is open, you cross it."/>
+            <action condition="closed" msj="The door is closed and has no lock, how strange..."/>
+        </prop>   
+        
+        <prop id="door02" type="door" state="false" scene01="scene02" scene02="scene03">
+            <action condition="open" msj="The door is open and you cross it."/>
+            <action condition="closed" msj="The door is closed, a key is necessary."/>
+        </prop>
+        
+        <prop id="door03" type="door" state="false" scene01="scene02" scene02="scene06">
+            <action condition="open" msj="The door is open."/>
+            <action condition="closed" msj="The door is closed, there is a panel with ten numbers, an entry code is necessary."/>
+        </prop>
+        
+        <prop id="door04" type="door" state="false" scene01="scene03" scene02="scene04">
+            <action condition="open" msj="The door is open and you cross it."/>
+            <action condition="closed" msj="The door is closed."/>
+        </prop>
+        
+        <prop id="door05" type="door" state="true" scene01="scene04" scene02="scene05">
+            <action condition="open" msj="You climb up the stairs."/>
+        </prop>
+        
+        <prop id="door06" type="door" state="true" scene01="scene05" scene02="scene00">
+            <action condition="open" msj="You go through the portal."/>
+        </prop>
+        
+        <prop id="door07" type="door" state="false" scene01="scene06" scene02="scene07">
+            <action condition="open" msj="The door is open and you cross it."/>
+            <action condition="closed" msj="The door is closed, a key is necessary."/>
+        </prop>
+        
+        <prop id="door08" type="door" state="true" scene01="scene06" scene02="scene08">
+            <action condition="open" msj="The door is open and we cross it."/>
+        </prop>
+        
+        <prop id="door09" type="door" state="false" scene01="scene08" scene02="final">
+            <action condition="open" msj="'You brought my book back!', says the door. 'To thank you, I give it to you. It will be more useful for you than for me'. You cross the door, and you managed to go outside!"/>
+            <action condition="closed" msj="'Hello adventurer', says the door, 'before I let you pass, I need you to bring me back a book from the library. It is called 'XML for Dummies''." />
+        </prop>
+        
+        
+        
+        <prop id="box00" type="box" scene01="scene00" unlock="null">
+            <action msj="The books are written in a language you do not know. You randomly pick a book, and you find a scroll inside where it says: 'Python > Perl'."/>
+        </prop>
+        
+        <prop id="box01" type="box" scene01="scene01" unlock="door02">
+            <action msj="The chest is open and inside is a key with the message 'door 2' engraved."/>
+        </prop>
+        
+        <prop id="box02" type="box" scene01="scene02" unlock="door01">
+            <action msj="You notice a button on the goblin's nose. You push it and you hear a creaking sound at the bottom of the stairs."/>
+        </prop>
+        
+        <prop id="box03" type="box" scene01="scene03" unlock="door04">
+            <action msj="You step on the pressure plate, and it opens the door to the north."/>
+        </prop>
+        
+        <prop id="box05" type="box" scene01="scene05" unlock="door03">
+            <action msj="On the wall, you can see a number written in red: 42."/>
+        </prop>
+        
+        <prop id="box06" type="box" scene01="scene07" unlock="door09">
+            <action msj="You take a look at the shelves and you take the only book in English called 'XML for Dummies'."/>
+        </prop>
+        
+        <prop id="box07" type="box" scene01="scene06" unlock="door07">
+            <action msj="The chest is open and inside is a key with the message 'door 7' engraved.."/>
+        </prop>
+        
+        <prop id="box08" type="box" scene01="scene01" unlock="null">
+            <action msj="The chest is empty."/>
+        </prop>
+        
+        <prop id="box09" type="box" scene01="scene01" unlock="null">
+            <action msj="The chest is empty."/>
+        </prop>
+       
+        <prop id="box10" type="box" scene01="scene01" unlock="null">
+            <action msj="The chest is open and inside is a scroll with the following message :'The portal will lead you outside.'"/>
+        </prop>
+    </props>
+    
+</world>
+<!--
+DTD generated with: http://xml.mherman.org/
+Structure:
+	world
+		player [scene]
+		scenes
+			scene [id, numDoors, numBoxes, msj]
+				action [dest, msj] (dest is the intended recipient of the action, the prop that runs when choosing that option)
+		props
+			prop [id, type, state, scene01, scene02] (door case: type is a door, scene01 and scene02 are the two scenes that link that door)
+				action [condition, msj] (door case: condition could be open or closed)
+			prop [id, type, state, scene01, scene02] (stairs case: type is a staircase, scene01 and scene02 are the two scenes that link this staircase)
+			    action [condition, msj] (stairs case: condition could be open or closed)
+		    prop [id, type, state, scene01, scene02] (portal case: type could be a portal or a mirror, scene01 and scene02 are the two scenes that link this portal)
+			    action [condition, msj] (portal case: condition could be open or closed)
+			    
+			prop [id, type, state, scene01, unlock] (box case: type is a box, scene01 is the scene to which the prop belongs and unlock is the prop that unlocks when executed)
+				action [msj] (box case)
+			prop [id, type, state, scene01, unlock] (shelf case: type could be a shelf, scene01 is the scene to which the prop belongs and unlock is the prop that unlocks when executed)
+				action [msj] (shelf case)
+			prop [id, type, state, scene01, unlock] (wall case: type could be a wall, scene01 is the scene to which the prop belongs and unlock is the prop that unlocks when executed)
+				action [msj] (wall case)
+			prop [id, type, state, scene01, unlock] (pressure plate case: type could be a pressure plate, scene01 is the scene to which the prop belongs and unlock is the prop that unlocks when executed)
+				action [msj] (pressure plate case)
+			prop [id, type, state, scene01, unlock] (button case: type could be a button, scene01 is the scene to which the prop belongs and unlock is the prop that unlocks when executed)
+				action [msj] (button case)
+			
+-->
