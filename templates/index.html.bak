@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Accueil</title>
+<style>
+
+</style>
+{% endblock %}
+
+{% block body %}
+<h1 class="welcome">ENTER THE DUNGEON</h1>
+<div class="icon.select.select-label::before">
+
+    <section class="container">
+      <h2 class="title">Story</h2>
+      <div class="containers">
+        <div class="container dark">
+          <label class="title"></label>
+          <p>The kingdom of Eldevir is in danger. The army of Orcs has invaded the whole country in a few months and the war continues to rage. You are a knight of the army of Men. Your mission was to deliver a message to the king, but in the middle of the forest, you cross paths with an orc, who does not look easy... Your only way out? To run...</p>
+        </div>
+      </div>
+    </section>
+
+<form action="/" method="POST">
+	<label for="story">Select an XML file</label>
+	<input type="file" id="fichier" name="fichier" accept="text/xml"/>
+	<button type="submit">Submit</button>
+</form>
+</div>
+
+{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				{% if msg == "Le document XML est bien formé et valide." %}
+					<p>The XML document is valid</p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+
+
+	<div class="ready" align="center">Ready to go on an adventure ?</div>
+
+         <div style="margin-right:.4em;">
+            <a class="icon x clickable" href="/game.html"></a>
+          </div>
+
+				{% else %}
+					<p>L'erreur suivante s'est produite :</p>
+					{{ msg }}
+				{% endif %}
+			{% endfor %}
+	{% endif %}
+{% endwith %}
+
+
+
+{% endblock %}
