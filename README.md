@@ -1,6 +1,8 @@
 # Enter the dungeon
 
-This program is a school project. It is a textual game, made with python, xml, html and css.
+This project was realized during my second year of master degree in natural language processing. It is a textual game, made with python, xml, html and css.
+
+Will you find your way out ?
 
 
 ## Run
