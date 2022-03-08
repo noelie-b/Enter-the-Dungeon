@@ -5,6 +5,6 @@ This project was realized during my second year of master degree in natural lang
 Will you find your way out ?
 
 
-How to run it ?
+# How to run it ?
 app.py
 
